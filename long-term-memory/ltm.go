@@ -107,7 +107,7 @@ func GenerateResponse(
 	// Fire the request to OpenAI.
 	resp, err := client.CompletionWithEngine(ctx, "text-davinci-002", gpt3.CompletionRequest{
 		Prompt:           []string{builder.String()},
-		Temperature:      asRef(float32(0.9)),
+		Temperature:      asRef(float32(0.7)),
 		MaxTokens:        asRef(64),
 		TopP:             asRef(float32(1)),
 		FrequencyPenalty: 0,
