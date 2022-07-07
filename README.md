@@ -1,54 +1,11 @@
-# iMessage Indexing Demo
+# Operand Examples
 
-This repository allows anyone to index their personal iMessage history with [Operand](https://operand.ai).
+This repo houses a collection of example projects built using the Operand API.
 
-To get started, you'll need to get an API key from the Operand Dashboard. You can sign up [here](https://operand.ai/auth), and if you have any questions or feedback, please don't hesistate to [reach out](mailto:morgan@operand.ai)!
+To get started, you'll need to head to [our website](https://operand.ai) and create a free account. After you've signed up, you'll be able to get your API key from the Settings -> API Key page. You'll need this API key to use these demos. If you have any questions or feedback items, please feel free to email [support](mailto:support@operand.ai).
 
-### Setup Instructions
+### List of Projects
 
-This demo requires a machine running macOS. A laptop will work, or a dedicated server if you're feeling fancy.
+- [iMessage Indexing](imessage/README.md): A small application which runs on a macOS machine and indexes all incoming iMessages and SMS messages with Operand. Also supports images & PDF documents. For more information, you can read the accompanying [blog post](https://operand.ai/blog/imessage-demo).
 
-1. Install [Go](https://golang.org) if you haven't already.
-2. Clone [ABCS](https://github.com/operandinc/abcs), which provides the underlying functionality for iMessage sending and receiving.
-3. Clone this repository, and configure the following environment variables (in a `.env` file):
-
-```
-OPERAND_ENDPOINT=https://prod.operand.ai
-OPERAND_PARENT_ID=<collection id>
-OPERAND_API_KEY=<api key>
-```
-
-The parent ID is an optional variable which essentially tells the system what folder within Operand you'd like to put the iMessages (and associated objects). You can create a new collection with the object browser, and then copy it's ID using the secondary action menu. The API key can be seen on the dashboard by navigating to Settings -> API Keys.
-
-4. (Optional) Configure an S3 bucket.
-
-We use S3 to store the underlying data for attachments. If the following variables are included in the environment, S3 will be used for attachments and the system will automatically index images, pdfs, etc.
-
-Example configuration:
-```
-S3_ENDPOINT=https://nyc3.digitaloceanspaces.com
-S3_REGION=us-east-1
-S3_BUCKET=<your bucket name>
-S3_KEY=<your s3 key>
-S3_SECRET=<your s3 secret>
-```
-
-5. Start the system by running the following commands (in seperate terminals) on your Mac machine. In order for messages to be received, `Terminal` must be given `Full Disk Access` (Settings -> Security).
-
-Listen for incoming messages:
-```
-./abcs -listen=127.0.0.1:11106 -endpoint=http://127.0.0.1:8080
-```
-
-Handle incoming messages:
-```
-PORT=8080 go run imd.go
-```
-
-### Some other notes
-
-- The system is currently rather limited, as this is more of a proof-of-concept rather than something "production ready".
-- We recommend [MacStadium](https://www.macstadium.com/) for hosting, we've had a great experience with it in the past.
-- We'd happily accept PRs to add additional functionality here, or to [ABCS](https://github.com/operandinc/abcs). Specifically, adding the option to index outgoing messages (rather than just incoming) and to support additional object types.
-
-
+- [Chatbot w/ Long-Term Memory](long-term-memory/README.md): A GPT-3 based chatbot with support for long-term memory. To accomplish this, we index all incoming messages from the user into an Operand collection. Then, when we recieve a new message from the user, we do a semantic search to find the most relevant context (for the given incoming message) and pass that data into the prompt itself. By doing this, the AI chatbot can "remember" the entire message history. For a longer-form write-up, you can read the accompanying [blog post](https://operand.ai/blog/long-term-memory).
