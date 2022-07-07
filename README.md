@@ -2,7 +2,7 @@
 
 This repo houses a collection of example projects built using the Operand API.
 
-To get started, you'll need to head to [our website](https://operand.ai) and create a free account. After you've signed up, you'll be able to get your API key from the Settings -> API Key page. You'll need this API key to use these demos.
+To get started, you'll need to head to [our website](https://operand.ai) and create a free account. After you've signed up, you'll be able to get your API key from the Settings -> API Key page. You'll need this API key to use these demos. If you have any questions or feedback items, please feel free to email [support](mailto:support@operand.ai).
 
 ### List of Projects
 
